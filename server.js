@@ -13,6 +13,7 @@ app.use(
   cors({
     origin: "https://quiet-sunflower-336da4.netlify.app", // Replace with your frontend URL
     methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type"],
     credentials: true, // Enable if cookies or authorization headers are used
   })
 );
@@ -36,7 +37,7 @@ app.post("/api/chat", (req, res) => {
 });
 
 // Use dynamic port for production
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
