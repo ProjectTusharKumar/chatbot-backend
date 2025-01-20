@@ -4,9 +4,20 @@ const cors = require("cors");
 const db = require("./New folder/db");
 
 const app = express();
-app.use(bodyParser.json());
-app.use(cors());
 
+// Middleware
+app.use(bodyParser.json());
+
+// Allow CORS for your frontend URL
+app.use(
+  cors({
+    origin: "https://quiet-sunflower-336da4.netlify.app", // Replace with your frontend URL
+    methods: ["GET", "POST"],
+    credentials: true, // Enable if cookies or authorization headers are used
+  })
+);
+
+// API Endpoint
 app.post("/api/chat", (req, res) => {
   const query = req.body.query;
 
@@ -15,6 +26,7 @@ app.post("/api/chat", (req, res) => {
     [query],
     (err, row) => {
       if (err) {
+        console.error("Database error:", err.message);
         res.status(500).json({ answer: "Internal server error" });
       } else {
         res.json({ answer: row ? row.answer : "I didn't understand that." });
@@ -23,6 +35,8 @@ app.post("/api/chat", (req, res) => {
   );
 });
 
-app.listen(5000, () => {
-  console.log("Server running on http://localhost:5000");
+// Use dynamic port for production
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
 });
