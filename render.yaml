@@ -4,5 +4,5 @@ services:
     env: node
     plan: free
     buildCommand: 'npm install'
-    startCommand: 'node index.js'
+    startCommand: 'node server.js'
     rootDir: ./chatbot-backend
