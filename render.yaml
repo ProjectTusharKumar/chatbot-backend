@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 services:
   - type: web
     name: chatbot-backend
@@ -6,3 +7,13 @@ services:
     buildCommand: 'npm install'
     startCommand: 'node server.js'
     rootDir: ./chatbot-backend
+=======
+services:
+  - type: web
+    name: chatbot-backend
+    env: node
+    plan: free
+    buildCommand: 'npm install'
+    startCommand: 'node server.js'
+    rootDir: ./chatbot-backend
+>>>>>>> c2bd841bdda91dd06ac2f82590ed1797235dda1b
