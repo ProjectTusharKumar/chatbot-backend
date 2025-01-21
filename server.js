@@ -11,14 +11,14 @@ app.use(bodyParser.json());
 // CORS Configuration
 app.use(
   cors({
-    origin: "https://chatbot-frontend-kappa-seven.vercel.app", // Replace with your frontend URL
+    origin: "https://chatbot-frontend-kappa-seven.vercel.app", // Your frontend URL
     methods: ["GET", "POST", "OPTIONS"], // Allow necessary HTTP methods
     allowedHeaders: ["Content-Type", "Authorization"], // Allow necessary headers
-    credentials: true, // Support cookies and credentials if needed
+    credentials: true, // Support credentials if needed
   })
 );
 
-// Handle preflight requests
+// Handle preflight requests explicitly
 app.options("*", cors());
 
 // API Endpoint
