@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 // Allow CORS for your frontend URL
 app.use(
   cors({
-    origin: "https://quiet-sunflower-336da4.netlify.app", // Replace with your frontend URL
+    origin: "https://chatbot-frontend-three-orcin.vercel.app", // Replace with your frontend URL
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type"],
     credentials: true, // Enable if cookies or authorization headers are used
