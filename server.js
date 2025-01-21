@@ -9,17 +9,16 @@ const app = express();
 app.use(bodyParser.json());
 
 // CORS Configuration
-app.use(
-  cors({
-    origin: "https://chatbot-frontend-kappa-seven.vercel.app", // Your frontend URL
-    methods: ["GET", "POST", "OPTIONS"], // Allow necessary HTTP methods
-    allowedHeaders: ["Content-Type", "Authorization"], // Allow necessary headers
-    credentials: true, // Support credentials if needed
-  })
-);
-
-// Handle preflight requests explicitly
-app.options("*", cors());
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "https://chatbot-frontend-kappa-seven.vercel.app"); // Replace with your frontend URL
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Origin, Content-Type, Accept, Authorization");
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(200); // Handle preflight requests
+  }
+  next();
+});
 
 // API Endpoint
 app.post("/api/chat", (req, res) => {
